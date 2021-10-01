@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Carousel from scratch</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.carousel {
+			position: relative;
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+		}
+
+		.circles {
+
+			display: flex;
+			position: absolute;
+
+			bottom: 40px;
+
+		}
+
+		.navigation {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+
+		}
+
+		.navigation div {
+			border: 1px solid blue;
+			background: grey;
+			padding: 5px 10px;
+		}
+
+		.slide img {
+			width: 100%;
+		}
+
+
+
+		.circle {
+			width: 30px;
+			height: 30px;
+			border: 3px solid black;
+			border-radius: 50%;
+			margin: 2px;
+		}
+
+		.slide {
+			display: none;
+		}
+
+		.active {
+			display: block;
+		}
+
+		.active-circle {
+			background: grey;
+		}
+	</style>
+</head>
+
+<body>
+	<!--
+		Carousel 
+			Slides
+				slide 1
+				slide 2
+				slide 3
+			Navigation
+				next
+				previous
+			Circles
+				circle 1
+				circle 2
+				circle 3
+
+	-->
+	<div class="carousel">
+		<div class="slides">
+			<div class="slide active">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Tent_camping_along_the_Sulayr_trail_in_La_Taha%2C_Sierra_Nevada_National_Park_%28DSCF5147%29.jpg/1200px-Tent_camping_along_the_Sulayr_trail_in_La_Taha%2C_Sierra_Nevada_National_Park_%28DSCF5147%29.jpg"
+					alt="">
+			</div>
+			<div class="slide">
+				<img src="https://www.novascotia.com/sites/default/files/styles/tablet/public/2019-12/Parks-Canada-otentik-camping-1920x1080.jpg?itok=TtAKN2Oc"
+					alt="">
+			</div>
+			<div class="slide">
+				<img src="https://blog-assets.thedyrt.com/uploads/2018/09/shutterstock_1277196250-compressor.jpg"
+					alt="">
+			</div>
+			<div class="slide ">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Tent_camping_along_the_Sulayr_trail_in_La_Taha%2C_Sierra_Nevada_National_Park_%28DSCF5147%29.jpg/1200px-Tent_camping_along_the_Sulayr_trail_in_La_Taha%2C_Sierra_Nevada_National_Park_%28DSCF5147%29.jpg"
+					alt="">
+			</div>
+		</div>
+		<div class="navigation">
+			<div class="prev">prev</div>
+			<div class="next">next</div>
+		</div>
+		<div class="circles">
+			<div class="circle active-circle"></div>
+			<div class="circle "></div>
+			<div class="circle "></div>
+		</div>
+	</div>
+	<div class="parent">
+		<div class="children"></div>
+		<div class="children"></div>
+		<div class="children"></div>
+	</div>
+</body>
+<script>
+	// document 
+	// le premier trouver
+	let slides = document.querySelectorAll(".slide")
+	let circles = document.querySelectorAll(".circle")
+	let buttonNext = document.querySelector(".next")
+	// setInterval une fonction js / elle prend deux paramatres || 1-function  2-interval= 1000
+	let index = 0
+	setInterval(changeSlides, 3000)
+	// 0 1 2 3 4 5 6 7 
+	function changeSlides() {
+		circles[index % 3].classList.remove("active-circle")
+		slides[index % 3].classList.remove("active")
+		index++
+		slides[(index % 3)].classList.add("active")
+		circles[(index % 3)].classList.add("active-circle")
+
+	}
+	buttonNext.onclick = function () {
+		changeSlides()
+	}
+
+
+	// active 
+	// 
+	console.log("yekhdem el js");
+</script>
+
+</html>
